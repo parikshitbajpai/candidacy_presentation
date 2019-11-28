@@ -1,0 +1,107 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+
+% Theme options
+\usetheme{Warsaw}
+\setbeamertemplate{blocks}[rounded]
+\useoutertheme{shadow}
+\useinnertheme{circles}
+
+% Packages
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{tikzmark,positioning}
+\usepackage{pdfpages}	% To import PDF page
+
+% Some redifinition
+\makeatletter
+\def\mathcolor#1#{\@mathcolor{#1}}
+\def\@mathcolor#1#2#3{%
+  \protect\leavevmode
+  \begingroup
+    \color#1{#2}#3%
+  \endgroup
+}
+\makeatother
+
+% Ontario Tech Colours
+\definecolor{ForestGreen}{cmyk}{0.83,0.21,1,0.08}
+\definecolor{ONTech-dark-blue}{cmyk}{1,0.58,0.09,0.46}
+\definecolor{ONTech-light-blue}{cmyk}{1,0.31,0,0}
+\definecolor{ONTech-orange}{cmyk}{0,0.70,1,0}
+\definecolor{ONTech-dark-bluey}{cmyk}{0.9,0.11,0.13,0.20}
+\definecolor{ONTech-cool-grey}{cmyk}{0.20,0.14,0.12,0.40}
+\definecolor{ONTech-dark-grey}{cmyk}{0.45,0.25,0.16,0.59}
+\definecolor{ONTech-navy}{cmyk}{1,0.75,0.50,0.50}
+
+% Palette Modifications
+\setbeamercolor{palette primary}{bg=ONTech-dark-blue,fg=white}
+\setbeamercolor{palette secondary}{bg=ONTech-light-blue,fg=white}
+\setbeamercolor{palette tertiary}{bg=ONTech-orange,fg=white}
+\setbeamercolor{palette quaternary}{bg=ONTech-light-blue,fg=white}
+\setbeamercolor{structure}{fg=ONTech-dark-blue} % itemize, enumerate, etc
+\setbeamercolor{section in toc}{fg=ONTech-dark-blue} % TOC sections
+\setbeamercolor{subsection in head/foot}{bg=ONTech-navy,fg=white} % Headings
+
+% Add slide numbers in navigation bar
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \insertframenumber/\inserttotalframenumber
+}
+
+% Math vector and matrix commands
+\renewcommand{\vec}[1]{\ensuremath{\boldsymbol{#1}}}
+\newcommand{\mtx}[1]{\ensuremath{\boldsymbol{#1}}}
+
+% For no navigation symbols on section start pages
+\AtBeginSection[]{%
+  \begingroup
+  \setbeamertemplate{navigation symbols}{}
+  \begin{frame}
+  \frametitle{Outline}
+  \tableofcontents[currentsection]
+  \end{frame}
+  \endgroup
+}
+
+
+\title[PhD Candidacy Examination]{Thermochemical Equilibrium for Multiphysics Simulations of Nuclear Materials}
+\subtitle{Development of the Corrosion Modelling Application Yellowjacket}
+\author{Parikshit Bajpai}
+\institute{\footnotesize{ Supervisor: Prof. Markus H.A. Piro}}
+\date{\scriptsize{PhD Candidacy Examination \\ \today}}
+
+\begin{document}
+
+\begingroup
+\setbeamertemplate{navigation symbols}{}
+{
+\setbeamercolor{background canvas}{bg=}
+\includepdf{Cover/Cover.pdf}
+}
+\endgroup
+
+%\frame{\titlepage}
+
+%\frame{\tableofcontents}
+
+\begingroup
+\setbeamertemplate{navigation symbols}{}
+\begin{frame}
+\frametitle{Outline}
+\tableofcontents
+\end{frame}
+\endgroup
+
+\input{Sections/Introduction}
+
+
+
+
+\end{document}
