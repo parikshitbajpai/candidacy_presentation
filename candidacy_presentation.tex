@@ -16,6 +16,10 @@
 \usepackage{tikz}
 \usetikzlibrary{tikzmark,positioning}
 \usepackage{pdfpages}	% To import PDF page
+\usepackage{siunitx}
+\usepackage{mhchem}
+\usepackage{booktabs}
+\usepackage{multicol}
 
 % Some redifinition
 \makeatletter
@@ -42,10 +46,11 @@
 \setbeamercolor{palette primary}{bg=ONTech-orange,fg=white}
 \setbeamercolor{palette secondary}{bg=ONTech-dark-blue,fg=white}
 \setbeamercolor{palette tertiary}{bg=ONTech-light-blue,fg=white}
-\setbeamercolor{palette quaternary}{bg=ONTech-light-blue,fg=white}
-\setbeamercolor{structure}{fg=ONTech-light-blue} % itemize, enumerate, etc
+\setbeamercolor{palette quaternary}{bg=ONTech-dark-blue,fg=white}
+\setbeamercolor{structure}{fg=ONTech-dark-blue} % itemize, enumerate, etc
 \setbeamercolor{section in toc}{fg=ONTech-dark-bluey} % TOC sections
-\setbeamercolor{subsection in head/foot}{bg=ONTech-navy,fg=white} % Headings
+\setbeamercolor{section in head/foot}{bg=ONTech-navy,fg=white} % Headings
+\setbeamercolor{subsection in head/foot}{bg=ONTech-light-blue,fg=white} % Headings
 
 % Add slide numbers in navigation bar
 \addtobeamertemplate{navigation symbols}{}{%
@@ -83,7 +88,7 @@
 \setbeamertemplate{navigation symbols}{}
 {
 \setbeamercolor{background canvas}{bg=}
-\includepdf{Cover/Cover.pdf}
+\includepdf{Cover/Cover_no_bold.pdf}
 }
 \endgroup
 
@@ -100,9 +105,18 @@
 \endgroup
 
 \input{Sections/Introduction}
+\input{Sections/Goals}
 \input{Sections/Thermodynamics}
+\input{Sections/Implementation}
+\input{Sections/Progress}
 
 
-
+\begingroup
+\setbeamertemplate{navigation symbols}{}
+{
+\setbeamercolor{background canvas}{bg=}
+\includepdf{Cover/BackCover.pdf}
+}
+\endgroup
 
 \end{document}
