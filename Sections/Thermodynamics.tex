@@ -5,9 +5,9 @@
 	\frametitle{Gibbs Energy}
 	\begin{itemize}
 	\item<1-> Developed  by Josiah Willard Gibbs in 1873.
-		\begin{block}{}
-		\textit{Available energy} is the greatest amount of mechanical work which can be obtained from a given quantity of a certain substance in a given initial state, without increasing its total volume or allowing heat to pass to or from external bodies, except such as at the close of the processes are left in their initial condition.
-		\end{block}
+%		\begin{block}{}
+%		\textit{Available energy} is the greatest amount of mechanical work which can be obtained from a given quantity of a certain substance in a given initial state, without increasing its total volume or allowing heat to pass to or from external bodies, except such as at the close of the processes are left in their initial condition.
+%		\end{block}
 	\item<2-> Relates the \textit{enthalpy} of the system to its \textit{entropy}.
 		\begin{exampleblock}{}
 		\vspace{-0.25cm}
@@ -94,13 +94,23 @@
 
 \frame{
 	\frametitle{Thermodynamic Equilibrium - Sufficient Conditions}
-	\only<1>{
+	\only<1-2>{\onslide<1-2>{
 	\begin{block}{Gibbs plane}
 	\begin{equation*}
 		\pi_{\lambda} = \min_{\lambda} \sum_{i=1}^{N_{\lambda}}x_{i({\lambda})} \left (\mu_{i({\lambda})} - \sum_{j=1}^C \nu_{i,j}\Gamma_j \right )
 	\end{equation*}
 	\end{block}}
-	\only<2>{
+	
+	\onslide<2>{
+	\begin{block}{Constraints}
+	\vspace{-0.25cm}
+	\begin{align*}
+		\sum_{i=1}^{N_{\lambda}} x_{i(\lambda)} = 1 \\
+		x_{i(\lambda)}} \geq 0 %\mspace{50mu} \forall i
+	\end{align*}
+	\end{block}}
+	
+	\only<3>{
 	\begin{figure}[htbp]
 		\begin{center}
 		\includegraphics[height=0.75\paperheight]{Figures/Gibbs_plane}
