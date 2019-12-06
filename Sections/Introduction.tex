@@ -4,41 +4,27 @@
 {
   \frametitle{Nuclear Energy Perspective}
 	\begin{itemize}
-		\item<1-> Nuclear energy provides about 10\% of the world's electricity from about 450 power reactors.
-		\item<2-> Nuclear is the world's second largest source of low-carbon power (29\% of the total in 2017).
-			\begin{figure}[htbp]
-			\begin{center}
-			\includegraphics[width=0.75\textwidth]{Figures/Nuclear_2019}
-			\end{center}
-			\end{figure}
-		\item<3-> Nuclear power capacity worldwide is increasing steadily, with about 50 reactors under construction.
+		\item<+-> Nuclear power has historically been one of the largest contributors of carbon-free electricity globally.
+		\item<+-> Nuclear power today makes a significant contribution to electricity generation, providing 10\% of global electricity supply in 2018.
+		\item<+-> In advanced economies, nuclear power accounts for 18\% of generation and is the largest low-carbon source of electricity.
+		\item<+-> Nuclear power can play an important role in clean energy transitions and it has significant potential to contribute to power sector decarbonisation\footnote{ IEA (2019), "Nuclear Power in a Clean Energy System", IEA, Paris.}.
+		\item<+-> Nuclear power plants contribute to electricity security in multiple ways such as keeping power grids stable.
+		\item<+-> Without nuclear investment, achieving a sustainable energy system will be much harder and offsetting less nuclear power with more renewables would cost more.
+		\item<+-> A doubling in annual capacity additions is needed to be on track with the IEA's Sustainable Development Scenario\footnote{ IEA (2019), "Tracking Power", IEA, Paris.}.
 	\end{itemize}
 }
 
 \frame{
 	\frametitle{Nuclear Reactors}
-	\begin{itemize}
+	\onslide<1->{\begin{itemize}
 		\item<1-> Nuclear reactors are used to carry out controlled chain reactions to produce heat through fission.
 		\item<2-> Most of the reactors currently in use are 2\textsuperscript{nd} / 3\textsuperscript{rd}  generation Light Water Reactors or Pressurised Heavy Water Reactors.
-			\begin{figure}[htbp]
-			\begin{center}
-				\includegraphics[height=0.5\paperheight]{Figures/Gen_Nuclear}	
-			\end{center}
-			\end{figure}
-	\end{itemize}
-}
-
-\frame{
-	\frametitle{Simulation of Nuclear Reactors}
-	\begin{itemize}
-		\item Traditional reactor simulation tools rely on the \emph{Operator Splitting} approach.
-	\end{itemize}
-	\pause	
-	\begin{figure}[htbp]
+	\end{itemize}}
+	\onslide<2->{\begin{figure}[htbp]
 		\begin{center}
-			\includegraphics[height=0.55\paperheight]{Figures/Operator_split}	
+			\includegraphics[height=0.5\paperheight]{Figures/Gen_Nuclear}	
 		\end{center}
-	\end{figure}
+	\end{figure}}
 }
 
 \subsection{Generation IV Reactors}
@@ -47,10 +33,10 @@
 	\only<1-5>{\begin{itemize}
 		\item<1-> Generation IV reactors are advanced reactor concepts under development with the following goals:
 			\begin{itemize}
-				\item <2-> Sustainability
-				\item <3-> Economy
-				\item <4-> Safety and reliability
-				\item <5-> Proliferation resistance
+				\item <2-> \textbf{Sustainability}: Energy generation that meets clean air objectives and provides long-term availability of systems and effective fuel utilisation for worldwide energy production. Also, minimise and manage nuclear waste.
+				\item <3-> \textbf{Economy}: A clear life-cycle cost advantage over other energy sources and a level of financial risk comparable to other energy projects.
+				\item <4-> \textbf{Safety and reliability}: Excel in safety and reliability and a very low likelihood and degree of reactor core damage.
+				\item <5-> \textbf{Proliferation resistance}: Increase the assurance that these systems are the least desirable route for diversion or theft of weapons-usable materials.
 			\end{itemize}
 	\end{itemize}}	
 	\only<6>{\begin{figure}[htbp]
@@ -82,6 +68,20 @@
 }
 
 \subsection{Multiphysics Simulations}
+
+\frame{
+	\frametitle{Simulation of Nuclear Reactors}
+	\begin{itemize}
+		\item Traditional reactor simulation tools rely on the \emph{Operator Splitting} approach.
+	\end{itemize}
+	\pause	
+	\begin{figure}[htbp]
+		\begin{center}
+			\includegraphics[height=0.55\paperheight]{Figures/Operator_split}	
+		\end{center}
+	\end{figure}
+}
+
 \frame{
 	\frametitle{MOOSE}
 	\only<1-5>{\begin{itemize}
@@ -101,25 +101,34 @@
 
 \frame{
 	\frametitle{Nuclear Materials}
-	\only<1-2>{\begin{itemize}
+	\only<1-3>{\begin{itemize}
 		\item<1-> Nuclear materials are highly complex multiscale, multiphysics systems.
 	\end{itemize}}
-	\only<2>{\begin{figure}[htbp]
+	\only<2-3>{\begin{figure}[htbp]
 		\begin{center}
-			\includegraphics[height=0.5\paperheight]{Figures/Multiphysics.pdf}	
-		\end{center}
+			\includegraphics[height=0.6\paperheight]{Figures/Multiphysics.pdf}	
+		\end{center}	
 	\end{figure}}
-	\only<3>{\begin{figure}[htbp]
+	\only<3>{\begin{itemize}
+		\item<3-> Design and development of nuclear materials can be supported by numerical simulations to make the process both time and cost efficient.
+	\end{itemize}}
+	\only<4>{\begin{itemize}
+		\item The materials simulation tools of MOOSE form the Fuels Product Line (FPL).
+		\item The framework consists of MOOSE,  fuel performance code Bison and mesoscale microstructural evolution tool Marmot.
+	\end{itemize}
+	\begin{figure}[htbp]
 		\begin{center}
 			\includegraphics[width=0.85\paperwidth]{Figures/FPL}	
 		\end{center}
-		\end{figure}}
+		\end{figure}
+		\blfootnote{Image from NEAMS website, \url{https://neams.inl.gov/}}}
+		
 }
 
 \frame{
 	\frametitle{Corrosion}
 	\begin{itemize}
-		\item<1-> MSR and other advanced reactors use high temperature fluids such as molten fluoride/chloride salts.
+		\item<1-> MSRs and other advanced reactors use high temperature fluids such as molten fluoride/chloride salts.
 		\item<2-> High temperature fluids especially molten fluoride/chloride salts cause corrosion of  structural materials.
 		\item<3-> Corrosion is an electrochemical process driven by the thermodynamic and kinetics of the system.
 		\item<4-> Effective prediction of corrosion requires a multiscale, mutiphysics approach.
@@ -132,14 +141,16 @@
 
 \frame{
 	\frametitle{Yellowjacket}
-	\only<1-3>{\begin{itemize}
+	\only<1-5>{\begin{itemize}
 		\item<1-> Yellowjacket is a new corrosion modelling tool currently under development.
 		\item<2-> Yellowjacket will couple phase field models with thermodynamic equilibrium calculations to  effectively model corrosion in advanced reactors.
-		\item<3-> Collaboration between Ontario Tech University, University of Florida, Idaho National Laboratory and Los Alamos National Laboratory.
+		\item<3-> The primary audience for Yellowjacket is U.S. Department of Energy and molten salt reactor developers in the U.S. 
+		\item<4-> Collaboration between Ontario Tech University, University of Florida, Idaho National Laboratory and Los Alamos National Laboratory.
+		\item<5-> Funded by the U.S. Department of Energy through Idaho National Laboratory and the development of thermochemistry solver is also supported by the Canada Research Chairs program.
 	\end{itemize}}
-	\only<4->{\begin{figure}[htbp]
+	\only<6->{\begin{figure}[htbp]
 		\begin{center}
-			\includegraphics[height=0.75\paperheight]{Figures/Yellowjacket_MOOSE.pdf}	
+			\includegraphics[height=0.7\paperheight]{Figures/Yellowjacket_MOOSE.pdf}	
 		\end{center}
 		\end{figure}
 	}
@@ -155,7 +166,7 @@
 	\end{itemize}}
 	\only<5->{\begin{figure}[htbp]
 		\begin{center}
-			\includegraphics[height=0.5\paperheight]{Figures/Thermodynamics.pdf}	
+			\includegraphics[height=0.75\paperheight]{Figures/Thermodynamics.pdf}	
 		\end{center}
 		\end{figure}
 	}

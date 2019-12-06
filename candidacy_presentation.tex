@@ -1,4 +1,4 @@
-\documentclass{beamer}
+\documentclass[9pt]{beamer}
 \usepackage[utf8]{inputenc}
 
 % Theme options
@@ -60,6 +60,14 @@
     \insertframenumber/\inserttotalframenumber
 }
 
+% Footnote without number
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
 % Math vector and matrix commands
 \renewcommand{\vec}[1]{\ensuremath{\boldsymbol{#1}}}
 \newcommand{\mtx}[1]{\ensuremath{\boldsymbol{#1}}}
@@ -75,6 +83,8 @@
   \endgroup
 }
 
+% For footnote mark in braces.
+\renewcommand*{\thefootnote}{(\arabic{footnote})}
 
 \title[PhD Candidacy Examination]{Thermochemical Equilibrium for Multiphysics Simulations of Nuclear Materials}
 \subtitle{Development of the Corrosion Modelling Application Yellowjacket}
