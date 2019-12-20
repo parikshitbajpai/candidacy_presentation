@@ -55,10 +55,10 @@
 		\begin{block}{}
 		\vspace{-0.15cm}
 		\begin{equation*}
-        			G_{sys} = RT \left ( \sum_{\lambda=1}^{\Lambda} n_{\lambda} \sum_{i=1}^{N_{\lambda}}x_{i({\lambda})}\tilde{\mu}_i + \sum_{\omega=1}^{\Omega} n_{\omega} \tilde{\mu}_{\omega} \right )
+        			\frac{G_{sys}}{RT} = \left ( \sum_{\lambda=1}^{\Lambda} n_{\lambda} \sum_{i=1}^{N_{\lambda}}x_{i({\lambda})}\tilde{\mu}_i + \sum_{\omega=1}^{\Omega} n_{\omega} \tilde{\mu}_{\omega} \right )
     		\end{equation*}
 		\end{block}
-	\item<2-> The Gibbs energy of  the system can also be expressed in terms of the element potentials, $\Gamma_j$, and the number of moles, $b_j$, of the system components.
+	\item<2-> The Gibbs energy of  the system can also be expressed in terms of the system component potentials, $\Gamma_j$, and the number of moles, $b_j$, of the system components.
 		\begin{exampleblock}{}
 		\vspace{-0.15cm}
 		\begin{equation*}
@@ -74,7 +74,7 @@
 	\pause
 	\begin{block}{Conservation of mass}
 		\begin{equation*}
-		b_j = \sum_{\lambda=1}^{\Lambda} n_{\lambda}\sum_{i=1}^{N_{\lambda}}x_{i({\lambda})}{\nu}_{i,j} +  \sum_{\omega=1}^{\Omega} n_{\omega}{\nu}
+		b_j = \sum_{\lambda=1}^{\Lambda} n_{\lambda}\sum_{i=1}^{N_{\lambda}}x_{i({\lambda})}{\nu}_{i,j} +  \sum_{\omega=1}^{\Omega} n_{\omega}{\nu_\omega}
 		\end{equation*}
 	\end{block}
 	\pause
@@ -113,10 +113,10 @@
 	\only<3>{
 	\begin{figure}[htbp]
 		\begin{center}
-		\includegraphics[height=0.75\paperheight]{Figures/Gibbs_plane}
+		\includegraphics[height=0.65\paperheight]{Figures/Gibbs_plane}
 		\end{center}
 	\end{figure}
-	}
+	\blfootnote{Piro et al., J. Nucl. Mater, 414 (3), 399-407, 2011.}}
 }
 
 \subsection{Gibbs Energy Minimisation}
@@ -129,7 +129,7 @@
 	\end{itemize}}
 	\only<4>{\begin{alertblock}{Optimise}
 		\begin{equation*}
-		b_j = \sum_{\lambda=1}^{\Lambda} n_{\lambda}\sum_{i=1}^{N_{\lambda}}x_{i({\lambda})}{\nu}_{i,j} +  \sum_{\omega=1}^{\Omega} n_{\omega}{\nu}
+		b_j = \sum_{\lambda=1}^{\Lambda} n_{\lambda}\sum_{i=1}^{N_{\lambda}}x_{i({\lambda})}{\nu}_{i,j} +  \sum_{\omega=1}^{\Omega} n_{\omega}{\nu_\omega}
 		\end{equation*}
 	\end{alertblock}
 	\begin{exampleblock}{Constraint}

@@ -1,0 +1,283 @@
+\documentclass[9pt]{beamer}
+\usepackage[utf8]{inputenc}
+
+% Theme options
+\usetheme{Warsaw}
+\setbeamertemplate{blocks}[rounded]
+\useoutertheme{shadow}
+\useinnertheme{circles}
+
+% Packages
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{tikzmark,positioning}
+\usepackage{pdfpages}	% To import PDF page
+\usepackage{siunitx}
+\usepackage{mhchem}
+\usepackage{booktabs}
+\usepackage{multicol}
+
+% Some redifinition
+\makeatletter
+\def\mathcolor#1#{\@mathcolor{#1}}
+\def\@mathcolor#1#2#3{%
+  \protect\leavevmode
+  \begingroup
+    \color#1{#2}#3%
+  \endgroup
+}
+\makeatother
+
+% Ontario Tech Colours
+\definecolor{ForestGreen}{cmyk}{0.83,0.21,1,0.08}
+\definecolor{ONTech-dark-blue}{cmyk}{1,0.58,0.09,0.46}
+\definecolor{ONTech-light-blue}{cmyk}{1,0.31,0,0}
+\definecolor{ONTech-orange}{cmyk}{0,0.70,1,0}
+\definecolor{ONTech-dark-bluey}{cmyk}{0.9,0.11,0.13,0.20}
+\definecolor{ONTech-cool-grey}{cmyk}{0.20,0.14,0.12,0.40}
+\definecolor{ONTech-dark-grey}{cmyk}{0.45,0.25,0.16,0.59}
+\definecolor{ONTech-navy}{cmyk}{1,0.75,0.50,0.50}
+
+% Palette Modifications
+\setbeamercolor{palette primary}{bg=ONTech-orange,fg=white}
+\setbeamercolor{palette secondary}{bg=ONTech-dark-blue,fg=white}
+\setbeamercolor{palette tertiary}{bg=ONTech-light-blue,fg=white}
+\setbeamercolor{palette quaternary}{bg=ONTech-dark-blue,fg=white}
+\setbeamercolor{structure}{fg=ONTech-dark-blue} % itemize, enumerate, etc
+\setbeamercolor{section in toc}{fg=ONTech-dark-bluey} % TOC sections
+\setbeamercolor{section in head/foot}{bg=ONTech-navy,fg=white} % Headings
+\setbeamercolor{subsection in head/foot}{bg=ONTech-light-blue,fg=white} % Headings
+
+%% Add slide numbers in navigation bar
+%\addtobeamertemplate{navigation symbols}{}{%
+%    \usebeamerfont{footline}%
+%    \usebeamercolor[fg]{footline}%
+%    \hspace{1em}%
+%    \insertframenumber/\inserttotalframenumber
+%}
+
+% Footnote without number
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+% Math vector and matrix commands
+\renewcommand{\vec}[1]{\ensuremath{\boldsymbol{#1}}}
+\newcommand{\mtx}[1]{\ensuremath{\boldsymbol{#1}}}
+
+% For no navigation symbols on section start pages
+\AtBeginSection[]{%
+  \begingroup
+  \setbeamertemplate{navigation symbols}{}
+  \begin{frame}
+  \frametitle{Outline}
+  \tableofcontents[currentsection]
+  \end{frame}
+  \endgroup
+}
+
+% For footnote mark in braces.
+\renewcommand*{\thefootnote}{(\arabic{footnote})}
+
+\title[PhD Candidacy Examination]{Thermochemical Equilibrium for Multiphysics Simulations of Nuclear Materials}
+\subtitle{Development of the Corrosion Modelling Application Yellowjacket}
+\author{Parikshit Bajpai}
+\institute{\footnotesize{ Supervisor: Prof. Markus H.A. Piro}}
+\date{\scriptsize{PhD Candidacy Examination \\ \today}}
+
+\begin{document}
+
+\begingroup
+\setbeamertemplate{navigation symbols}{}
+{
+\setbeamercolor{background canvas}{bg=}
+\includepdf{Cover/Backup.pdf}
+}
+\endgroup
+
+%\frame{\titlepage}
+
+%\frame{\tableofcontents}
+
+%\begingroup
+%\setbeamertemplate{navigation symbols}{}
+%\begin{frame}
+%\frametitle{Outline}
+%\tableofcontents
+%\end{frame}
+%\endgroup
+
+%\input{Sections/Introduction}
+%\input{Sections/Goals}
+%\input{Sections/Thermodynamics}
+%\input{Sections/Implementation}
+%\input{Sections/Progress}
+
+\frame{
+	\frametitle{Excess Mixing Models}
+	\begin{itemize}
+		\item {\textbf{Regular Substitutional Models}}
+		\begin{itemize}
+			\item \textbf{Kohler-Toop Interpolation}
+			\begin{equation*}
+				g_{\lambda}^{ex} = \sum_{z=1}^Z \phi_z (x_1^{d_1} x_2^{d_2} x_3^{d_3} )
+			\end{equation*}
+			\item \textbf{Redlich-Kister-Muggiano Interpolation}
+			\begin{equation*}
+				g_{\lambda}^{ex} = \sum_{z=1}^Z x_j x_k \sum_{\nu = 0} {^\nu}L_{j}
+			\end{equation*}
+			\end{itemize}
+		\item {\textbf{Compound Energy Formalism}}
+		\begin{equation*}
+			g_{\lambda}^{ex} = 	 \sum_{p=1}^{N_p} \left( \prod_{m=1} y_{m(s)}  \right)   \sum_{z=0}^{N_z} {^zL_{j,k}} (y_j - y_k)^{z}
+		\end{equation*} 
+		\item {\textbf{Modified Quasichemical Model}}
+	\end{itemize}
+}
+
+\frame{
+	\frametitle{Levelling}
+	Mathematically, levelling is achieved through an iterative process that systematically adjusts fixed combinations of phases, subject to the linear equality and inequality mass balance constraints, to progressively minimise the GIbbs energy of the system. At iteration $m+1$, the adjustment to be applied to the relative Gibbs energy of phase $i$ is defined by :
+	\begin{equation*} \label{eq:lev_adj}
+		\begin{aligned}
+			d \hat{G}_i^{m\rightarrow m+1} &= \sum_{j=1}^{C} c_{i,j} d \Gamma_j^{m\rightarrow m+1}\\
+			\hat{G}_i^{m+1} &= \hat{G}_i^{m} - d \hat{G}_i^{m\rightarrow m+1}
+		\end{aligned}
+	\end{equation*}
+	where, $c_{i,j}$ denotes the atomic fraction of element $j$ in species $i$ and $d \Gamma_j^{m\rightarrow m+1}$ is the adjustment applied to the chemical potential of element $j$, which in turn is determined by the most stable phases found at iteration $m$. 
+}
+
+\frame{
+	\frametitle{Levelling}
+	\begin{figure}
+            \centering
+            \includegraphics[width=1\linewidth]{Figures/Levelling.pdf}
+        \end{figure}
+        \blfootnote{M.H.A. Piro, PhD Thesis, RMCC, 2011.}
+}
+
+
+\frame{
+	\frametitle{Initialisation - Previous Time Step}
+	\begin{figure}[htbp]
+		\begin{center}
+			\includegraphics[height=0.75\paperheight]{Figures/Initialisation}
+		\end{center}
+	\end{figure}
+	\blfootnote{Image - Poschmann et al., Technical report, ORNL.}
+	
+}
+
+\frame{
+	\frametitle{Wolfe/Armijo Condition}
+	\begin{block}{}
+		Each iteration step in the minimisation problem involves approximately solving the subproblem 
+		\begin{equation*}
+			\min_\alpha f\left(\mathbf{x}^m + \alpha \mathbf{p}^m\right)
+		\end{equation*}
+	where $\mathbf{x}^m$ is the best estimate at iteration $m$, $\mathbf{p}^m$ denotes the search direction vector and $\alpha$ represents the step size.
+	\end{block} 
+	
+	\begin{exampleblock}{}
+		 A step length $\alpha^m$ is said to satisfy the Wolfe conditions, restricted to the direction $\mathbf{p}^m$, if the following two inequalities hold:
+	\begin{equation*}
+		f\left(\mathbf{x}^m + \alpha^m \mathbf{p}^m\right) \leq f\left(\mathbf{x}^m \right) + c_1 \alpha^m \left(\mathbf{p}^m\right)^T \nabla f\left(\mathbf{x}^m \right)
+	\end{equation*}
+	\begin{equation*}
+		- \left(\mathbf{p}^m\right)^T \nabla f\left(\mathbf{x}^m + \alpha^m \mathbf{p}^m\right) \leq - c_2 \left(\mathbf{p}^m\right)^T \nabla f\left(\mathbf{x}^m \right)
+	\end{equation*}
+	with $0 < c_1 < c_2 < 1$. The first inequality, known as the Armijo condition ensures that the step length $\alpha^m$ decreases $f$ sufficiently, and the second inequality known as the curvature condition ensures that the slope has been reduced sufficiently.
+	\end{exampleblock}
+	
+}
+
+\frame{
+	\frametitle{Particle Swarm Optimisation}
+	
+	The position vector of the particles at iteration $m$, $\mathbf{x_p^m}$, is updated based on the velocity vector, $\mathbf{v_p^m}$:
+	\begin{gather*}
+		\mathbf{v_p^m} = \psi \mathbf{v_p^{m-1}} + \phi_p r_p \left(\mathbf{x_p^*} - \mathbf{x_p^m}\right) + \phi_s r_s \left(\mathbf{x_s^*} - \mathbf{x_p^m}\right) \\
+		\mathbf{x_p^{m+1}} = \mathbf{x_p^m} + \mathbf{v_p^m}
+	\end{gather*}
+	where, $x_p^*$ denotes the best known position of a particle (local minima) and $x_s^*$ denotes the best known position of the swarm (global maximum). The first term in the above equation can be interpreted as the inertia term while the second and the third terms act as the driving force towards the local minima and global minimum respectively.}
+	
+\frame{
+	\frametitle{Branch and Bound}
+	
+	\begin{block}{}
+	\begin{enumerate}
+		\item \textbf{Branching}: The domain $D$ is partitioned into two or more smaller disjoint domains $D_1,D_2,\dots,$ such that $D = D_1 \cup D_2 \cup \dots$ Thus, the partitioned objective function can be considered a convex approximation of the objective function within the subdomain $D_i$.
+		\item \textbf{Bounding}: The upper and lower bound of the objective function are found within a subset of the domain $D$. In the classical Branch and Bound method, a subdomain can be removed from the analysis the lower bound of the objective function in it is greater than the upper bound of the objective function in any other subdomain.
+	\end{enumerate}
+	\end{block}
+	
+	\begin{block}{}
+	The approach adopted by Piro and Simunovic partitions the domain for each solution phase $\lambda$ into $N_\lambda$ subdomains and the driving force $\pi_\lambda$ is minimised in each subdomain. The Lagrangian function of the driving force of the solution phase $\lambda$ can be defined as follows:
+	 \begin{equation*}
+	 	L_\lambda = \sum_{i=1}^{N_\lambda} x_{i(\lambda)}\left( \mu_{i(\lambda)} - \sum_{j=1}^{C} \nu_{i,j}\Gamma_j \right) - \pi_{\lambda}\left( \sum_{i=1}^{N_\lambda} x_{i(\lambda)} -  1 \right)
+	 \end{equation*}
+	 \end{block}	
+}
+
+
+\frame{
+	\frametitle{Phase Field Method}
+	
+	\begin{block}{Cahn-Hilliard Equation}
+		\begin{equation}
+            		\frac{dc}{dt} = \nabla M\left(c_i\right) \nabla\frac{\delta F}{\delta c_i}
+        		\end{equation}
+	\end{block}
+	
+	\begin{exampleblock}{Allen-Cahn Equation}
+		\begin{equation}
+            		\frac{d\eta_j}{dt} = -L \frac{\delta F}{\delta \eta_j}
+        		\end{equation}
+        \end{exampleblock}
+        
+        The primary thermodynamic inputs required to the evolution equations are the Gibbs free energy of the system and chemical potentials of the species as a function of the concentrations of components and the phase order parameters.
+}
+
+
+
+\frame{
+	\frametitle{Continuous Integration Environment for Verification, Enhancement, and Testing (CIVET)}
+	\begin{figure}[htbp]
+		\begin{center}
+			\includegraphics[width=\textwidth]{Figures/CIVET}
+		\end{center}
+	\end{figure}
+	\blfootnote{Image - MOOSE Website \url{https://mooseframework.org/workshop/}}
+	
+}
+
+\frame{
+	\frametitle{Corrosion}
+	\begin{figure}[htbp]
+\begin{center}
+	\includegraphics[height=0.6\paperheight]{Figures/Corrosion}
+\caption{EDS maps of Cr as a function of depth below the surface of 316 stainless steel samples after corrosion tests: (a–c) tested in 316 stainless steel capsule and (d–f) tested in graphite capsule for 1000 h, 2000 h, and 3000 h, respectively. The maximum Cr depletion distance along grain boundaries is labeled in each EDS Cr map.}
+\end{center}
+\end{figure}
+
+	\blfootnote{Zheng et al.,  J. Nucl. Mater., 461, 143-150, 2015.}
+}
+
+
+
+%\begingroup
+%\setbeamertemplate{navigation symbols}{}
+%{
+%\setbeamercolor{background canvas}{bg=}
+%\includepdf{Cover/BackCover.pdf}
+%}
+%\endgroup
+
+\end{document}

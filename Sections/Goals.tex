@@ -1,4 +1,4 @@
-\section{Goals of Research}
+\section{Goal of Research}
 \subsection{Impetus}
 \frame{
 	\frametitle{Role of Thermochemistry}
@@ -26,30 +26,29 @@
 	\onslide<1->{
 		\begin{itemize}
 			\item<1-> Experiments can not predict the material properties at every single point in the life of a nuclear material.
-			\item<2-> Multiphysics simulations have to rely on empirical correlations of material properties.
-			\item<3-> This reduces the accuracy of simulation.
-			\item<4-> Thermochemistry allows us to capture the effect of compositional evolution on the properties of materials.
-			\item<5-> Investigate phenomena which would be impossible to study using only experiments.
+			\item<1-> Multiphysics simulations have to rely on empirical correlations of material properties, reducing the accuracy of simulations.
+			\item<1-> Thermochemistry allows us to capture the effect of compositional evolution on the properties of materials and investigate phenomena which would be impossible to study using only experiments.
 		\end{itemize}
 	}
 	
-	\onslide<6->{\begin{figure}[htbp]
-\begin{center}
-\includegraphics[width=\textwidth]{Figures/O_M}
-\end{center}
-\end{figure}
-}
+	\onslide<2->{
+	\begin{figure}[htbp]
+		\begin{center}
+		\includegraphics[width=\textwidth]{Figures/O_M}
+		\end{center}
+	\end{figure}
+	\blfootnote{Image - M. Poschmann et al., Technical Report, ORNL. }}
 	}
 
 \frame{
 	\frametitle{Impetus}
 	\begin{itemize}
-		\item<+-> Direct coupling of thermochemical equilibrium calculations has only recently gained traction in the scientific community.
-		\item<+-> Equilibrium calculations are extremely costly compared to other finite element based simulations.
-		\item<+-> The material science community has traditionally relied on using phase diagrams and relatively simple material models in order to save computational cost.
-		\item<+-> Most thermodynamic equilibrium softwares, such as ThermoCalc and FactSage, are commercial, standalone codes developed in 1990s.
-		\item<+-> There is little freedom to make improvements or adapt them to specific needs.
-		\item<+->	Thermochimica is an open-source code developed with the aim of direct coupling with multiphysics codes.
+		\item Direct coupling of thermochemical equilibrium calculations has only recently gained traction in the scientific community.
+		\item Equilibrium calculations are extremely costly compared to other finite element based simulations.
+		\item The material science community has traditionally relied on using phase diagrams and relatively simple material models in order to save computational cost.
+		\item Most thermodynamic equilibrium softwares, such as ThermoCalc and FactSage, are commercial, standalone codes developed in 1970s.
+		\item There is little freedom to make improvements or adapt them to specific needs.
+		\item Thermochimica is an open-source code developed with the aim of direct coupling with multiphysics codes.
 			\begin{itemize}
 				\item Written in Fortran 90.
 				\item Not developed within the MOOSE framework.
@@ -58,13 +57,13 @@
 	\end{itemize}
 }
 
-\subsection{Outcomes}
+\subsection{Goal and Outcomes}
 \frame{
-	\frametitle{Goals and Outcomes}
+	\frametitle{Goal and Outcomes}
 	\onslide<1->{\begin{block}{Goal of Research} \small
 	The goal of this work is to develop a new state-of-the-art thermodynamic equilibrium code for direct integration in mutiphysics framework MOOSE.
 	\end{block}}
-	\onslide<2->{\begin{block}{Outcomes} \footnotesize
+	\onslide<2->{\begin{block}{Expected Outcomes} \footnotesize
 	\begin{enumerate}
 		\item Development of a new advanced Gibbs energy minimiser written in C++ within the framework of MOOSE platform.
 		\item Full integration within the multiphysics framework MOOSE, with the intent of coupling to the phase field code Marmot. 
